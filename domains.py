@@ -37,6 +37,18 @@ def printProgressBar (iteration, total, prefix = 'Progress:', suffix = 'Complete
 #
 def call_api(op, action, data=None, dryrun=False, verbose=False):
     """ Call to the API, adding the headers and returning a json object """
+
+    API_KEY = os.getenv('GODADDY_API_KEY_'+scope, None)
+    SECRET_KEY = os.getenv('GODADDY_SECRET_KEY_'+scope, None)
+    GODADDY_API_URL=os.getenv('GODADDY_API_URL', 'https://api.ote-godaddy.com')
+
+    if API_KEY == None:
+        print('Not found env variable GODADDY_API_KEY_'+scope)
+        exit(-1)
+    if SECRET_KEY == None:
+        print('Not found env variable GODADDY_SECRET_KEY_'+scope)
+        exit(-1)
+
     api_url = GODADDY_API_URL
     if api_url.endswith('/'):
         api_url = api_url[:-1]
@@ -319,17 +331,6 @@ if __name__ == '__main__':
 
     load_dotenv() # Take environment variables from .env
 
-    #-- Global vars
-    API_KEY = os.getenv('GODADDY_API_KEY_'+scope, None)
-    SECRET_KEY = os.getenv('GODADDY_SECRET_KEY_'+scope, None)
-    GODADDY_API_URL=os.getenv('GODADDY_API_URL', 'https://api.ote-godaddy.com')
-
-    if API_KEY == None:
-        print('Not found env variable GODADDY_API_KEY_'+scope)
-        exit(-1)
-    if SECRET_KEY == None:
-        print('Not found env variable GODADDY_SECRET_KEY_'+scope)
-        exit(-1)
 
     dns_types = records_type.split(',') if records_type is not None else None
 
