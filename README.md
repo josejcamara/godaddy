@@ -3,11 +3,11 @@
 ## Usage
 
 ### Prepare environment
-> python -m venv .venv  
-> source .venv/bin/activate  
+> python -m venv venv  
+> source venv/bin/activate  
 > pip install -r requirements.txt  
 
-### Run script
-> python domains.py DEMO
+### domain.py
+> python domains.py --help
 
 
